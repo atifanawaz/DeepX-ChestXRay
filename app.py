@@ -466,7 +466,7 @@ def load_cnn_model(path):
         st.stop()
     return load_model(path)
 
-model_path = os.path.join("model", "cnn_model_final.keras")
+model_path = os.path.join("model", "C:\Users\USER\Desktop\DeepX-ChestXRay\model\cnn_model_final.keras")
 
 with st.spinner("🔄 Loading AI Model..."):
     model = load_cnn_model(model_path)
