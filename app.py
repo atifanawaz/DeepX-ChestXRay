@@ -451,11 +451,11 @@ with st.sidebar:
 # Main Header
 # -------------------------------------------------
 st.markdown('<h1 class="main-header">🩺 DeepX Diagnostic System</h1>', unsafe_allow_html=True)
-st.markdown('''
+st.markdown("""
     <p class="sub-header">
         Advanced AI-powered chest X-ray analysis with explainable visualizations
     </p>
-''', unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # -------------------------------------------------
 # Load Model
