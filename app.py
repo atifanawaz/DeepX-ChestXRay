@@ -465,9 +465,10 @@ def load_cnn_model(path):
         st.error(f"Model file NOT FOUND: {path}")
         st.stop()
     return load_model(path)
+    
 
 # Use a relative path to the model folder in your repo
-model_path = os.path.join("model", "cnn_model_final.keras")
+model_path = "model\cnn_model_final.keras"
 
 with st.spinner("🔄 Loading AI Model..."):
     model = load_cnn_model(model_path)
