@@ -467,14 +467,12 @@ def load_cnn_model(path):
     return load_model(path)
     
 
-# Use a relative path to the model folder in your repo
-# model_path = "model/cnn_model_final.keras"
+model_path = "model/cnn_model_final_hdf5.h5"
 
-# with st.spinner("🔄 Loading AI Model..."):
-#     model = load_cnn_model(model_path)
+with st.spinner("🔄 Loading AI Model..."):
+    model = load_cnn_model(model_path)
 
-model_path = os.path.join(os.getcwd(), "model", "cnn_model_final.keras")
-model = load_model(model_path)
+
 
 # -------------------------------------------------
 # Upload Section
