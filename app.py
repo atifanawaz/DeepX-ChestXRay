@@ -484,44 +484,28 @@ if uploaded_file:
             else:
                 img_array = img_resized.copy()
     
-            # Ensure 3-channel RGB
+            # Ensure 3-channel
             if img_array.ndim == 2:
                 img_array = np.stack([img_array]*3, axis=-1)
             elif img_array.shape[2] == 4:
                 img_array = img_array[:, :, :3]
-    
-            # Resize to model input size
-            img_array = cv2.resize(img_array, (224, 224))  # replace 224 with your model input size
-            img_array = img_array.astype(np.float32) / 255.0
-            img_input = np.expand_dims(img_array, axis=0)  # Add batch dimension
-    
-            # ---- Improved SHAP explainer ----
-            # Use dataset mean as baseline instead of zeros
-            # You can precompute this once: dataset_mean = np.mean(all_images_array, axis=0, keepdims=True)
-            dataset_mean = np.zeros_like(img_input)  # fallback if dataset mean unavailable
+            
+            # Resize and normalize
+            img_input = cv2.resize(np.array(img_resized), (224, 224))
+            img_input = np.expand_dims(img_input.astype(np.float32) / 255.0, axis=0)
+            
+            dataset_mean = np.zeros_like(img_input)  # fallback
             explainer = shap.GradientExplainer(model, dataset_mean)
-    
-            # Compute SHAP values
             shap_values = explainer.shap_values(img_input)
-    
-            # Take max absolute across channels to capture strongest signals
-            shap_img = np.max(np.abs(shap_values[0]), axis=-1)[0]  # shape (H, W)
             
-            # Normalize for better contrast
-            shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
-            
-            # Convert to uint8 and apply color map
+            # Max across channels
+            shap_img = np.max(np.abs(shap_values[0]), axis=-1)[0]
             shap_uint8 = np.uint8(255 * shap_img)
             shap_color = cv2.applyColorMap(shap_uint8, cv2.COLORMAP_INFERNO)
             
-            # Ensure both images are same size & 3 channels
-            shap_color_resized = cv2.resize(shap_color, (img_array.shape[1], img_array.shape[0]))
-            if shap_color_resized.ndim == 2:
-                shap_color_resized = cv2.cvtColor(shap_color_resized, cv2.COLOR_GRAY2BGR)
+            # Overlay with original
+            overlay_shap = cv2.addWeighted(np.array(img_resized), 0.5, shap_color, 0.5, 0)
             
-            # Overlay with original image
-            overlay_shap = cv2.addWeighted((img_array*255).astype(np.uint8), 0.6, shap_color_resized, 0.4, 0)
-
         except Exception as e:
             st.error(f"SHAP explanation failed: {e}")
             overlay_shap = (img_array*255).astype(np.uint8)
