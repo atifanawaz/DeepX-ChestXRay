@@ -324,15 +324,47 @@ with st.sidebar:
         </div>
     """, unsafe_allow_html=True)
 
+# # -------------------------------------------------
+# # Main Header
+# # -------------------------------------------------
+# st.markdown('<h1 class="main-header">🩺 DeepX Diagnostic System</h1>', unsafe_allow_html=True)
+# st.markdown("""
+#     <p class="sub-header">
+#         Advanced AI-powered chest X-ray analysis with explainable visualizations
+#     </p>
+# """, unsafe_allow_html=True)
+
 # -------------------------------------------------
 # Main Header
 # -------------------------------------------------
-st.markdown('<h1 class="main-header">🩺 DeepX Diagnostic System</h1>', unsafe_allow_html=True)
 st.markdown("""
-    <p class="sub-header">
-        Advanced AI-powered chest X-ray analysis with explainable visualizations
-    </p>
+<h1 style="
+    display: inline-block;
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 50%, #FFA07A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;">
+🩺 DeepX Diagnostic System
+</h1>
 """, unsafe_allow_html=True)
+
+st.markdown("""
+<p style="
+    text-align: center;
+    color: #6B5B5B;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    font-weight: 400;">
+Advanced AI-powered chest X-ray analysis with explainable visualizations
+</p>
+""", unsafe_allow_html=True)
+
 
 # -------------------------------------------------
 # Load Model
