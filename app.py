@@ -470,7 +470,7 @@ if uploaded_file:
         st.image(img_resized, width=400)
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-    
+
     # -------------------------------------------------
     # SHAP EXPLANATION (Updated for Cloud Stability)
     # -------------------------------------------------
@@ -478,12 +478,18 @@ if uploaded_file:
     
     with st.spinner("🧠 Computing SHAP explanations..."):
         try:
-            # Ensure proper shape and type for SHAP
-            img_input = np.expand_dims(img_resized.astype(np.float32) / 255.0, axis=0)
-    
-            # Use GradientExplainer with a small sample to reduce memory
+           # Convert PIL Image to NumPy array if needed
+            if isinstance(img_resized, Image.Image):
+                img_array = np.array(img_resized)
+            
+            # Ensure proper type and shape for SHAP
+            img_array = img_array.astype(np.float32) / 255.0
+            img_input = np.expand_dims(img_array, axis=0)  # Add batch dimension
+            
+            # Use GradientExplainer
             explainer = shap.GradientExplainer(model, img_input)
             shap_values = explainer.shap_values(img_input)
+
     
             # Aggregate channels and normalize
             shap_img = np.sum(shap_values[0], axis=-1)
