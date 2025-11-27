@@ -471,60 +471,7 @@ if uploaded_file:
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-    # -------------------------------------------------
-    # SHAP EXPLANATION (Proper Overlay)
-    # -------------------------------------------------
-    st.markdown('<div class="section-header">🔬 SHAP Feature Importance</div>', unsafe_allow_html=True)
     
-    with st.spinner("🧠 Computing SHAP explanations..."):
-        try:
-            # Convert to NumPy array if PIL Image
-            if isinstance(img_resized, Image.Image):
-                img_array = np.array(img_resized)
-            else:
-                img_array = img_resized.copy()
-    
-            # Ensure 3-channel
-            if img_array.ndim == 2:
-                img_array = np.stack([img_array]*3, axis=-1)
-            elif img_array.shape[2] == 4:
-                img_array = img_array[:, :, :3]
-            
-            # Resize and normalize
-            img_input = cv2.resize(np.array(img_resized), (224, 224))
-            img_input = np.expand_dims(img_input.astype(np.float32) / 255.0, axis=0)
-            
-            dataset_mean = np.zeros_like(img_input)  # fallback
-            explainer = shap.GradientExplainer(model, dataset_mean)
-            shap_values = explainer.shap_values(img_input)
-            
-            # Max across channels
-            shap_img = np.max(np.abs(shap_values[0]), axis=-1)[0]
-            shap_uint8 = np.uint8(255 * shap_img)
-            shap_color = cv2.applyColorMap(shap_uint8, cv2.COLORMAP_INFERNO)
-            
-            # Overlay with original
-            overlay_shap = cv2.addWeighted(np.array(img_resized), 0.5, shap_color, 0.5, 0)
-            
-        except Exception as e:
-            st.error(f"SHAP explanation failed: {e}")
-            overlay_shap = (img_array*255).astype(np.uint8)
-    
-    # ---- Display original & SHAP overlay ----
-    col1, col2 = st.columns(2)
-    with col1:
-        st.image(img_resized, width=400, caption="Original X-Ray")
-    with col2:
-        st.image(overlay_shap, width=450, caption="SHAP Explanation Overlay")
-        st.markdown(f"""
-            <div class="info-box">
-                <strong>SHAP Interpretation:</strong> 
-                Yellow/red regions indicate areas most influential for predicting <strong>{label}</strong>.
-            </div>
-        """, unsafe_allow_html=True)
-    
-
-
     # -------------------------------------------------
     # GradCAM++ & Integrated Gradients
     # -------------------------------------------------
