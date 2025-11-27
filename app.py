@@ -478,13 +478,20 @@ if uploaded_file:
     
     with st.spinner("🧠 Computing SHAP explanations..."):
         try:
-            # Ensure proper shape and type for SHAP``
-            img_input = np.expand_dims(img_resized.astype(np.float32) / 255.0, axis=0)
-    
-            # Use GradientExplainer with a small sample to reduce memory
+            # Ensure img_resized is a NumPy array
+            if isinstance(img_resized, Image.Image):
+                img_array = np.array(img_resized)
+            else:
+                img_array = img_resized  # already a NumPy array
+            
+            # Ensure float type and normalize
+            img_array = img_array.astype(np.float32) / 255.0
+            img_input = np.expand_dims(img_array, axis=0)  # Add batch dimension for SHAP
+            
+            # Use GradientExplainer
             explainer = shap.GradientExplainer(model, img_input)
             shap_values = explainer.shap_values(img_input)
-    
+                
             # Aggregate channels and normalize
             shap_img = np.sum(shap_values[0], axis=-1)
             shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
