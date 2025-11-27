@@ -498,10 +498,9 @@ if uploaded_file:
             img_input = np.expand_dims(img_array, axis=0)
     
             # Create a small baseline for SHAP (needed for GradientExplainer stability)
-            baseline = np.zeros_like(img_input)
-    
-            # GradientExplainer
-            explainer = shap.GradientExplainer(model, baseline)
+            background = np.stack([img_array]*3, axis=0)  # 3 images as background
+
+            explainer = shap.GradientExplainer(model, background)
             shap_values = explainer.shap_values(img_input)
     
             # Aggregate channels and normalize
