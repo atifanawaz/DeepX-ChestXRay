@@ -36,7 +36,6 @@ st.markdown("""
         font-size: 3rem;
         font-weight: 800;
         text-align: center;
-        display: inline-block; 
         margin-bottom: 0.5rem;
         letter-spacing: -1px;
     }
@@ -265,6 +264,8 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
+
 
 # -------------------------------------------------
 # Sidebar
@@ -598,4 +599,5 @@ st.markdown("""
         </p>
     </div>
 """, unsafe_allow_html=True)
+
 
