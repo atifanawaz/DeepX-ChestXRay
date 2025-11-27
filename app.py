@@ -510,13 +510,18 @@ if uploaded_file:
             # Normalize for better contrast
             shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
             
-            # Convert to color map
+            # Convert to uint8 and apply color map
             shap_uint8 = np.uint8(255 * shap_img)
             shap_color = cv2.applyColorMap(shap_uint8, cv2.COLORMAP_INFERNO)
-    
+            
+            # Ensure both images are same size & 3 channels
+            shap_color_resized = cv2.resize(shap_color, (img_array.shape[1], img_array.shape[0]))
+            if shap_color_resized.ndim == 2:
+                shap_color_resized = cv2.cvtColor(shap_color_resized, cv2.COLOR_GRAY2BGR)
+            
             # Overlay with original image
-            overlay_shap = cv2.addWeighted((img_array*255).astype(np.uint8), 0.6, shap_color, 0.4, 0)
-    
+            overlay_shap = cv2.addWeighted((img_array*255).astype(np.uint8), 0.6, shap_color_resized, 0.4, 0)
+
         except Exception as e:
             st.error(f"SHAP explanation failed: {e}")
             overlay_shap = (img_array*255).astype(np.uint8)
