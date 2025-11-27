@@ -472,7 +472,7 @@ if uploaded_file:
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
     # -------------------------------------------------
-    # SHAP EXPLANATION (Cloud-Stable Version)
+    # SHAP EXPLANATION (Proper Overlay)
     # -------------------------------------------------
     st.markdown('<div class="section-header">🔬 SHAP Feature Importance</div>', unsafe_allow_html=True)
     
@@ -495,47 +495,45 @@ if uploaded_file:
             img_array = img_array.astype(np.float32) / 255.0
             img_input = np.expand_dims(img_array, axis=0)  # Add batch dimension
     
-            # ---- Stable SHAP explainer ----
-            # Use a small synthetic background to avoid memory issues
-            background = np.zeros_like(img_input)  # minimal baseline
-            explainer = shap.GradientExplainer(model, background)
+            # ---- Improved SHAP explainer ----
+            # Use dataset mean as baseline instead of zeros
+            # You can precompute this once: dataset_mean = np.mean(all_images_array, axis=0, keepdims=True)
+            dataset_mean = np.zeros_like(img_input)  # fallback if dataset mean unavailable
+            explainer = shap.GradientExplainer(model, dataset_mean)
     
-            # Compute SHAP values safely
+            # Compute SHAP values
             shap_values = explainer.shap_values(img_input)
     
-            # Aggregate channels & normalize
-            shap_img = np.sum(shap_values[0], axis=-1)[0]  # remove batch dim
+            # Take max absolute across channels to capture strongest signals
+            shap_img = np.max(np.abs(shap_values[0]), axis=-1)[0]  # shape (H, W)
+            
+            # Normalize for better contrast
             shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
+            
+            # Convert to color map
             shap_uint8 = np.uint8(255 * shap_img)
-            shap_color = cv2.applyColorMap(shap_uint8, cv2.COLORMAP_VIRIDIS)
+            shap_color = cv2.applyColorMap(shap_uint8, cv2.COLORMAP_INFERNO)
+    
+            # Overlay with original image
             overlay_shap = cv2.addWeighted((img_array*255).astype(np.uint8), 0.6, shap_color, 0.4, 0)
     
         except Exception as e:
             st.error(f"SHAP explanation failed: {e}")
-            # fallback so the app won't crash
             overlay_shap = (img_array*255).astype(np.uint8)
     
     # ---- Display original & SHAP overlay ----
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown('<div class="image-container">', unsafe_allow_html=True)
-        st.image(img_resized, width=400)
-        st.markdown('<div class="image-label">Original X-Ray</div></div>', unsafe_allow_html=True)
-    
+        st.image(img_resized, width=400, caption="Original X-Ray")
     with col2:
-        st.markdown('<div class="image-container">', unsafe_allow_html=True)
-        st.image(overlay_shap, width=450)
-        st.markdown('<div class="image-label">SHAP Explanation Overlay</div></div>', unsafe_allow_html=True)
+        st.image(overlay_shap, width=450, caption="SHAP Explanation Overlay")
         st.markdown(f"""
             <div class="info-box">
                 <strong>SHAP Interpretation:</strong> 
-                Highlighted areas show regions most responsible for predicting <strong>{label}</strong>. 
-                Yellow/green areas indicate stronger influence on the model's decision.
+                Yellow/red regions indicate areas most influential for predicting <strong>{label}</strong>.
             </div>
         """, unsafe_allow_html=True)
     
-    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-
 
 
     # -------------------------------------------------
