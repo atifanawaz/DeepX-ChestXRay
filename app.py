@@ -482,34 +482,39 @@ if uploaded_file:
             if isinstance(img_resized, Image.Image):
                 img_array = np.array(img_resized)
             else:
-                img_array = img_resized  # already NumPy array
+                img_array = img_resized.copy()  # ensure we don’t modify original
     
-            # Ensure 3-channel (RGB) and float32
-            if img_array.ndim == 2:  # grayscale
+            # Ensure 3-channel RGB
+            if img_array.ndim == 2:
                 img_array = np.stack([img_array]*3, axis=-1)
-            elif img_array.shape[2] == 4:  # RGBA -> RGB
+            elif img_array.shape[2] == 4:
                 img_array = img_array[:, :, :3]
     
-            img_array = img_array.astype(np.float32) / 255.0
+            # Resize to model input size if needed
+            img_array = cv2.resize(img_array, (224, 224))  # replace 224 with your model input size
     
-            # Add batch dimension for SHAP
+            # Normalize to float32 [0,1]
+            img_array = img_array.astype(np.float32) / 255.0
             img_input = np.expand_dims(img_array, axis=0)
     
-            # GradientExplainer with small batch
-            explainer = shap.GradientExplainer(model, img_input)
+            # Create a small baseline for SHAP (needed for GradientExplainer stability)
+            baseline = np.zeros_like(img_input)
+    
+            # GradientExplainer
+            explainer = shap.GradientExplainer(model, baseline)
             shap_values = explainer.shap_values(img_input)
     
             # Aggregate channels and normalize
-            shap_img = np.sum(shap_values[0], axis=-1)
+            shap_img = np.sum(shap_values[0], axis=-1)[0]  # remove batch dim
             shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
             shap_img_uint8 = np.uint8(255 * shap_img)
             shap_color = cv2.applyColorMap(shap_img_uint8, cv2.COLORMAP_VIRIDIS)
-            overlay_shap = cv2.addWeighted(img_array*255.0, 0.6, shap_color, 0.4, 0).astype(np.uint8)
+            overlay_shap = cv2.addWeighted((img_array*255).astype(np.uint8), 0.6, shap_color, 0.4, 0)
     
         except Exception as e:
             st.error(f"SHAP explanation failed: {e}")
-            overlay_shap = np.array(img_resized) if isinstance(img_resized, Image.Image) else img_resized.copy()
-    
+            overlay_shap = (img_array*255).astype(np.uint8)
+
         
     col1, col2 = st.columns(2)
     with col1:
