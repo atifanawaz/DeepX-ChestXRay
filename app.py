@@ -522,7 +522,7 @@ if uploaded_file is not None:
         img = Image.open(uploaded_file).convert("RGB")
         img_resized = img.resize((224, 224))
 
-        st.image(img_resized, use_container_width=True)
+        st.image(img_resized, width=400)
 
         img_array = np.array(img_resized, dtype=np.float32) / 255.0
         img_array = np.expand_dims(img_array, axis=0)
