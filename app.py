@@ -470,43 +470,42 @@ if uploaded_file:
         st.image(img_resized, width=400)
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-
+    
     # -------------------------------------------------
-    # SHAP EXPLANATION
+    # SHAP EXPLANATION (Updated for Cloud Stability)
     # -------------------------------------------------
     st.markdown('<div class="section-header">🔬 SHAP Feature Importance</div>', unsafe_allow_html=True)
     
     with st.spinner("🧠 Computing SHAP explanations..."):
-        explainer = shap.GradientExplainer(model, img_array)
-        shap_values = explainer.shap_values(img_array)
-
-        shap_img = np.sum(shap_values[0], axis=-1)
-        shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
-        shap_img_uint8 = np.uint8(255 * shap_img)
-        shap_color = cv2.applyColorMap(shap_img_uint8, cv2.COLORMAP_VIRIDIS)
-        overlay_shap = cv2.addWeighted(np.array(img_resized), 0.6, shap_color, 0.4, 0)
-
+        try:
+            # Ensure proper shape and type for SHAP
+            img_input = np.expand_dims(img_resized.astype(np.float32) / 255.0, axis=0)
+    
+            # Use GradientExplainer with a small sample to reduce memory
+            explainer = shap.GradientExplainer(model, img_input)
+            shap_values = explainer.shap_values(img_input)
+    
+            # Aggregate channels and normalize
+            shap_img = np.sum(shap_values[0], axis=-1)
+            shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
+            shap_img_uint8 = np.uint8(255 * shap_img)
+            shap_color = cv2.applyColorMap(shap_img_uint8, cv2.COLORMAP_VIRIDIS)
+            overlay_shap = cv2.addWeighted(np.array(img_resized), 0.6, shap_color, 0.4, 0)
+    
+        except Exception as e:
+            st.error(f"SHAP explanation failed: {e}")
+            overlay_shap = img_resized.copy()  # fallback so app doesn't break
+    
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("""
-            <div class="image-container">
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.image(img_resized, width=400)
-
-        st.markdown("""
-                <div class="image-label">Original X-Ray</div>
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="image-label">Original X-Ray</div></div>', unsafe_allow_html=True)
     
     with col2:
-        st.markdown("""
-            <div class="image-container">
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.image(overlay_shap, width=450)
-        st.markdown("""
-                <div class="image-label">SHAP Explanation Overlay</div>
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="image-label">SHAP Explanation Overlay</div></div>', unsafe_allow_html=True)
         st.markdown(f"""
             <div class="info-box">
                 <strong>SHAP Interpretation:</strong> 
@@ -514,8 +513,9 @@ if uploaded_file:
                 Yellow/green areas indicate stronger influence on the model's decision.
             </div>
         """, unsafe_allow_html=True)
-
+    
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
 
     # -------------------------------------------------
     # GradCAM++ & Integrated Gradients
