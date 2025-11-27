@@ -591,7 +591,7 @@ if uploaded_file:
                 <div class="card-title">🖼️ Uploaded X-Ray</div>
             </div>
         """, unsafe_allow_html=True)
-        st.image(img_resized, use_container_width=True)
+        st.image(img_resized, width=400)
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
@@ -615,7 +615,7 @@ if uploaded_file:
         st.markdown("""
             <div class="image-container">
         """, unsafe_allow_html=True)
-        st.image(img_resized, use_container_width=True)
+        st.image(img_resized, width=400)
         st.markdown("""
                 <div class="image-label">Original X-Ray</div>
             </div>
@@ -625,7 +625,7 @@ if uploaded_file:
         st.markdown("""
             <div class="image-container">
         """, unsafe_allow_html=True)
-        st.image(overlay_shap, use_container_width=True)
+        st.image(overlay_shap, width=True)
         st.markdown("""
                 <div class="image-label">SHAP Explanation Overlay</div>
             </div>
@@ -669,7 +669,7 @@ if uploaded_file:
         st.markdown("""
             <div class="image-container">
         """, unsafe_allow_html=True)
-        st.image(overlay_gradcam, use_container_width=True)
+        st.image(overlay_gradcam, width=True)
         st.markdown(f"""
                 <div class="image-label">GradCAM++ • {label}</div>
             </div>
@@ -685,7 +685,7 @@ if uploaded_file:
         st.markdown("""
             <div class="image-container">
         """, unsafe_allow_html=True)
-        st.image(overlay_ig, use_container_width=True)
+        st.image(overlay_ig, width=True)
         st.markdown(f"""
                 <div class="image-label">Integrated Gradients • {label}</div>
             </div>
