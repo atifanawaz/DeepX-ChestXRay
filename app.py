@@ -28,17 +28,17 @@ st.markdown("""
         background: linear-gradient(135deg, #FFF5F3 0%, #FFE8E3 50%, #FFF0EB 100%);
     }
     
-    /* Header styling - warm coral/salmon gradient */
-    .main-header {
-        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 50%, #FFA07A 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 3rem;
-        font-weight: 800;
-        text-align: center;
-        margin-bottom: 0.5rem;
-        letter-spacing: -1px;
-    }
+    # /* Header styling - warm coral/salmon gradient */
+    # .main-header {
+    #     background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 50%, #FFA07A 100%);
+    #     -webkit-background-clip: text;
+    #     -webkit-text-fill-color: transparent;
+    #     font-size: 3rem;
+    #     font-weight: 800;
+    #     text-align: center;
+    #     margin-bottom: 0.5rem;
+    #     letter-spacing: -1px;
+    # }
     
     .sub-header {
         color: #6B5B5B;
