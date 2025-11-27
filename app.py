@@ -472,7 +472,7 @@ if uploaded_file:
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
     # -------------------------------------------------
-    # SHAP EXPLANATION (Updated for Cloud Stability)
+    # SHAP EXPLANATION (Cloud-Stable Version)
     # -------------------------------------------------
     st.markdown('<div class="section-header">🔬 SHAP Feature Importance</div>', unsafe_allow_html=True)
     
@@ -482,7 +482,7 @@ if uploaded_file:
             if isinstance(img_resized, Image.Image):
                 img_array = np.array(img_resized)
             else:
-                img_array = img_resized.copy()  # ensure we don’t modify original
+                img_array = img_resized.copy()
     
             # Ensure 3-channel RGB
             if img_array.ndim == 2:
@@ -490,31 +490,32 @@ if uploaded_file:
             elif img_array.shape[2] == 4:
                 img_array = img_array[:, :, :3]
     
-            # Resize to model input size if needed
+            # Resize to model input size
             img_array = cv2.resize(img_array, (224, 224))  # replace 224 with your model input size
-    
-            # Normalize to float32 [0,1]
             img_array = img_array.astype(np.float32) / 255.0
-            img_input = np.expand_dims(img_array, axis=0)
+            img_input = np.expand_dims(img_array, axis=0)  # Add batch dimension
     
-            # Create a small baseline for SHAP (needed for GradientExplainer stability)
-            background = np.stack([img_array]*3, axis=0)  # 3 images as background
-
+            # ---- Stable SHAP explainer ----
+            # Use a small synthetic background to avoid memory issues
+            background = np.zeros_like(img_input)  # minimal baseline
             explainer = shap.GradientExplainer(model, background)
+    
+            # Compute SHAP values safely
             shap_values = explainer.shap_values(img_input)
     
-            # Aggregate channels and normalize
+            # Aggregate channels & normalize
             shap_img = np.sum(shap_values[0], axis=-1)[0]  # remove batch dim
             shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
-            shap_img_uint8 = np.uint8(255 * shap_img)
-            shap_color = cv2.applyColorMap(shap_img_uint8, cv2.COLORMAP_VIRIDIS)
+            shap_uint8 = np.uint8(255 * shap_img)
+            shap_color = cv2.applyColorMap(shap_uint8, cv2.COLORMAP_VIRIDIS)
             overlay_shap = cv2.addWeighted((img_array*255).astype(np.uint8), 0.6, shap_color, 0.4, 0)
     
         except Exception as e:
             st.error(f"SHAP explanation failed: {e}")
+            # fallback so the app won't crash
             overlay_shap = (img_array*255).astype(np.uint8)
-
-        
+    
+    # ---- Display original & SHAP overlay ----
     col1, col2 = st.columns(2)
     with col1:
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
@@ -534,6 +535,7 @@ if uploaded_file:
         """, unsafe_allow_html=True)
     
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
 
 
     # -------------------------------------------------
