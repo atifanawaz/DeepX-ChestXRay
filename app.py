@@ -1,127 +1,3 @@
-# '''
-# import streamlit as st
-# import tensorflow as tf
-# import numpy as np
-# from PIL import Image
-# import cv2
-# import os
-# import shap
-
-# from tf_keras_vis.gradcam import Gradcam
-# from tf_keras_vis.saliency import Saliency
-# from tf_keras_vis.utils.scores import BinaryScore
-# from tensorflow.keras.models import load_model
-
-# # -------------------------------------------------
-# # Streamlit Configuration
-# # -------------------------------------------------
-# st.set_page_config(page_title="DeepX: Chest X-Ray Diagnostic", layout="wide")
-# st.title("DeepX: AI-Powered Chest X-Ray Diagnostic System")
-# st.write(
-#     "Upload a chest X-ray image to predict NORMAL or PNEUMONIA with GradCAM++, "
-#     "Integrated Gradients, and SHAP visualization."
-# )
-
-# # -------------------------------------------------
-# # Load Model
-# # -------------------------------------------------
-# @st.cache_resource(show_spinner=True)
-# def load_cnn_model(path):
-#     if not os.path.exists(path):
-#         st.error(f"Model file NOT FOUND: {path}")
-#         st.stop()
-#     return load_model(path)
-
-# model_path = os.path.join("model", "cnn_model_final.keras")
-# model = load_cnn_model(model_path)
-
-# # -------------------------------------------------
-# # Image Upload
-# # -------------------------------------------------
-# uploaded_file = st.file_uploader("Choose a chest X-ray image", type=["png", "jpg", "jpeg"])
-# if uploaded_file:
-
-#     img = Image.open(uploaded_file).convert("RGB")
-#     img_resized = img.resize((224, 224))
-
-#     st.image(img_resized, caption="Uploaded X-ray", use_container_width=True)
-
-#     img_array = np.expand_dims(np.array(img_resized) / 255.0, axis=0)
-
-#     # -------------------------------------------------
-#     # Prediction
-#     # -------------------------------------------------
-#     pred = model.predict(img_array, verbose=0)[0][0]
-#     if pred > 0.5:
-#         st.error(f"PNEUMONIA detected with probability {pred:.2f}")
-#         label = "PNEUMONIA"
-#         class_index = 1
-#     else:
-#         st.success(f"NORMAL detected with probability {1 - pred:.2f}")
-#         label = "NORMAL"
-#         class_index = 0
-
-#     # -------------------------------------------------
-#     # SHAP EXPLANATION
-#     # -------------------------------------------------
-#     st.subheader("SHAP Explanation (Feature Importance)")
-
-#     explainer = shap.GradientExplainer(model, img_array)
-#     shap_values = explainer.shap_values(img_array)
-
-#     shap_img = np.sum(shap_values[0], axis=-1)
-#     shap_img = (shap_img - shap_img.min()) / (shap_img.max() - shap_img.min() + 1e-8)
-#     shap_img_uint8 = np.uint8(255 * shap_img)
-#     shap_color = cv2.applyColorMap(shap_img_uint8, cv2.COLORMAP_VIRIDIS)
-#     overlay_shap = cv2.addWeighted(np.array(img_resized), 0.6, shap_color, 0.4, 0)
-
-#     # Side-by-side layout for SHAP
-#     col1, col2 = st.columns(2)
-#     with col1:
-#         st.image(img_resized, caption="Original X-ray", use_container_width=True)
-#     with col2:
-#         st.image(overlay_shap, caption="SHAP Explanation Overlay", use_container_width=True)
-
-#     # Text explanation
-#     st.markdown(
-#         "**SHAP Interpretation:** Areas highlighted show regions most responsible "
-#         f"for predicting **{label}**. Yellow/green areas indicate stronger influence."
-#     )
-
-#     # -------------------------------------------------
-#     # GradCAM++
-#     # -------------------------------------------------
-#     gradcam = Gradcam(model, clone=True)
-#     score = BinaryScore(target_values=[class_index])
-#     cam = gradcam(score, img_array)[0]
-
-#     heatmap = cv2.resize(cam, (224, 224))
-#     heatmap_uint8 = np.uint8(255 * heatmap)
-#     heatmap_color = cv2.applyColorMap(heatmap_uint8, cv2.COLORMAP_JET)
-#     overlay_gradcam = cv2.addWeighted(np.array(img_resized), 0.6, heatmap_color, 0.4, 0)
-
-#     # -------------------------------------------------
-#     # Integrated Gradients
-#     # -------------------------------------------------
-#     saliency = Saliency(model)
-#     saliency_map = saliency(score, img_array)[0]
-#     heatmap_saliency = cv2.resize(saliency_map, (224, 224))
-#     heatmap_saliency_uint8 = np.uint8(255 * heatmap_saliency)
-#     heatmap_saliency_color = cv2.applyColorMap(heatmap_saliency_uint8, cv2.COLORMAP_HOT)
-#     overlay_ig = cv2.addWeighted(np.array(img_resized), 0.6, heatmap_saliency_color, 0.4, 0)
-
-#     # -------------------------------------------------
-#     # Display GradCAM++ & IG side-by-side
-#     # -------------------------------------------------
-#     st.subheader("Model Explanation Maps")
-
-#     col3, col4 = st.columns(2)
-#     with col3:
-#         st.image(overlay_gradcam, caption=f"GradCAM++ ({label})", use_container_width=True)
-
-#     with col4:
-#         st.image(overlay_ig, caption=f"Integrated Gradients ({label})", use_container_width=True)
-# '''
 import streamlit as st
 import tensorflow as tf
 import numpy as np
@@ -626,7 +502,7 @@ if uploaded_file:
         st.markdown("""
             <div class="image-container">
         """, unsafe_allow_html=True)
-        st.image(overlay_shap, use_container_width=True)
+        st.image(overlay_shap, width=450)
         st.markdown("""
                 <div class="image-label">SHAP Explanation Overlay</div>
             </div>
@@ -670,7 +546,7 @@ if uploaded_file:
         st.markdown("""
             <div class="image-container">
         """, unsafe_allow_html=True)
-        st.image(overlay_gradcam, use_container_width=True)
+        st.image(overlay_gradcam, width=450)
         st.markdown(f"""
                 <div class="image-label">GradCAM++ • {label}</div>
             </div>
@@ -686,7 +562,7 @@ if uploaded_file:
         st.markdown("""
             <div class="image-container">
         """, unsafe_allow_html=True)
-        st.image(overlay_ig, use_container_width=True)
+        st.image(overlay_ig, width=450)
         st.markdown(f"""
                 <div class="image-label">Integrated Gradients • {label}</div>
             </div>
