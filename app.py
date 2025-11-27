@@ -512,6 +512,26 @@ with col_info:
     """, unsafe_allow_html=True)
 
 # -------------------------------------------------
+# SAFE IMAGE PIPELINE (THIS IS WHAT FIXES YOUR CRASH)
+# -------------------------------------------------
+if uploaded_file is not None:
+    from PIL import Image
+    import numpy as np
+
+    try:
+        img = Image.open(uploaded_file).convert("RGB")
+        img_resized = img.resize((224, 224))
+
+        st.image(img_resized, use_container_width=True)
+
+        img_array = np.array(img_resized, dtype=np.float32) / 255.0
+        img_array = np.expand_dims(img_array, axis=0)
+
+    except Exception as e:
+        st.error(f"Image processing failed: {e}")
+        st.stop()
+
+# -------------------------------------------------
 # Analysis Section
 # -------------------------------------------------
 if uploaded_file:
