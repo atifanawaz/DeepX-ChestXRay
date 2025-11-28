@@ -273,7 +273,7 @@ st.markdown("""
 with st.sidebar:
     st.markdown("""
         <div style="text-align: center; padding: 1rem 0;">
-            <span style="font-size: 3rem;">🩺</span>
+            <span style="font-size: 3rem;">💉</span>
             <h2 style="color: #F5E6E0; margin-top: 0.5rem; font-weight: 700;">DeepX</h2>
             <p style="color: #C4B0A8; font-size: 0.9rem;">AI-Powered Diagnostics</p>
         </div>
@@ -289,8 +289,7 @@ with st.sidebar:
     
     features = [
         ("🔬", "GradCAM++ Visualization"),
-        ("📊", "SHAP Explanations"),
-        ("🎯", "Integrated Gradients"),
+        ("🧾", "Integrated Gradients"),
         ("⚡", "Real-time Analysis"),
         ("🛡️", "High Accuracy CNN")
     ]
@@ -436,7 +435,7 @@ if uploaded_file:
         class_index = 0
         confidence = 1 - pred
         result_class = "result-normal"
-        result_icon = "✅"
+        result_icon = "✔"
 
     # Results Display
     col_result, col_image = st.columns([1, 1])
@@ -444,7 +443,7 @@ if uploaded_file:
     with col_result:
         st.markdown(f"""
             <div class="card" style="height: 100%;">
-                <div class="card-title">🎯 Diagnosis Result</div>
+                <div class="card-title">🧾 Diagnosis Result</div>
                 <div class="{result_class}">
                     {result_icon} {label}
                 </div>
@@ -466,7 +465,7 @@ if uploaded_file:
     with col_image:
         st.markdown("""
             <div class="card">
-                <div class="card-title">🖼️ Uploaded X-Ray</div>
+                <div class="card-title"> Uploaded X-Ray </div>
             </div>
         """, unsafe_allow_html=True)
         st.image(img_resized, width=400)
