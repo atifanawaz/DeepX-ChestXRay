@@ -332,28 +332,22 @@ with st.sidebar:
 # -------------------------------------------------
 
 st.markdown("""
-    <svg width="100%" height="90" viewBox="0 0 1200 90" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
-          <stop offset="50%" style="stop-color:#FF8E72;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#FFA07A;stop-opacity:1" />
-        </linearGradient>
-      </defs>
-    
-      <text x="50%" y="60%" text-anchor="middle"
-            font-size="48"
-            font-weight="800"
-            fill="url(#grad1)"
-            font-family="Arial, sans-serif">
+    <h1 style="
+        font-size: 3rem;
+        font-weight: 800;
+        text-align: center;
+        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 50%, #FFA07A 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    ">
         🩺 DeepX Diagnostic System
-      </text>
-    </svg>
-    
+    </h1>
     <p style="text-align:center; color:#6B5B5B; font-size:1.1rem; margin-top:-10px;">
-    Advanced AI-powered chest X-ray analysis with explainable visualizations
+        Advanced AI-powered chest X-ray analysis with explainable visualizations
     </p>
 """, unsafe_allow_html=True)
+
 
 
 # -------------------------------------------------
