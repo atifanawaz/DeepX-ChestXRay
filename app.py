@@ -327,33 +327,11 @@ with st.sidebar:
 # -------------------------------------------------
 # Main Header
 # -------------------------------------------------
-import streamlit as st
-from PIL import Image
-
-# Load image from your project folder
-img = Image.open("images/medical-stethoscope-isolated-white-background_1042381-5537.jpg")
-
-# Display header using flexbox
+st.markdown('<h1 class="main-header">💉 DeepX Diagnostic System</h1>', unsafe_allow_html=True)
 st.markdown("""
-<div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-""", unsafe_allow_html=True)
-
-st.image(img, width=50)
-
-st.markdown("""
-    <h1 style="
-        font-size: 3rem;
-        font-weight: 800;
-        color: #FFA07A;
-        margin: 0;
-    ">
-        DeepX Diagnostic System
-    </h1>
-</div>
-
-<p style="text-align:center; color:#6B5B5B; font-size:1.1rem; margin-top:5px;">
-    Advanced AI-powered chest X-ray analysis with explainable visualizations
-</p>
+  <p class="sub-header">
+      Advanced AI-powered chest X-ray analysis with explainable visualizations
+  </p>
 """, unsafe_allow_html=True)
 
 
