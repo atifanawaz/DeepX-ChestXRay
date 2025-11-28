@@ -3,9 +3,10 @@
 ## Project Overview
 DeepX-ChestXray is an AI-powered web application designed for automated analysis of chest X-ray images. Using state-of-the-art convolutional neural networks (CNNs), the system performs classification of chest X-rays and provides explainable visualizations to help understand model predictions.
 
-The platform is built with an interactive Streamlit interface, making it accessible for researchers, educators, and AI enthusiasts to explore AI-based medical imaging.
+The platform is built with an interactive Streamlit interface, making it accessible for researchers, educators, and AI enthusiasts to explore AI-based medical imaging.  
+You can access the live application here: [DeepX-ChestXray Web App](https://deepx-chestxray.streamlit.app/)
 
-Key Features:
+### Key Features
 - Classification of chest X-rays into normal or abnormal/pathology-specific categories
 - Explainable AI outputs using techniques such as GradCAM++ and feature attribution methods
 - Real-time inference for immediate results
