@@ -14,6 +14,9 @@ from tensorflow.keras.models import load_model
 # -------------------------------------------------
 # Streamlit Configuration & Custom Styling
 # -------------------------------------------------
+
+st.markdown(""" ...SVG CODE HERE... """, unsafe_allow_html=True)
+
 st.set_page_config(
     page_title="DeepX: Chest X-Ray Diagnostic",
     page_icon="🩺",
@@ -327,12 +330,30 @@ with st.sidebar:
 # -------------------------------------------------
 # Main Header
 # -------------------------------------------------
-st.markdown('<h1 class="main-header">🩺 DeepX Diagnostic System</h1>', unsafe_allow_html=True)
 st.markdown("""
-    <p class="sub-header">
-        Advanced AI-powered chest X-ray analysis with explainable visualizations
+    <svg width="100%" height="90" viewBox="0 0 1200 90" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#FF8E72;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#FFA07A;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+    
+      <text x="50%" y="60%" text-anchor="middle"
+            font-size="48"
+            font-weight="800"
+            fill="url(#grad1)"
+            font-family="Arial, sans-serif">
+        🩺 DeepX Diagnostic System
+      </text>
+    </svg>
+    
+    <p style="text-align:center; color:#6B5B5B; font-size:1.1rem; margin-top:-10px;">
+    Advanced AI-powered chest X-ray analysis with explainable visualizations
     </p>
 """, unsafe_allow_html=True)
+
 
 # -------------------------------------------------
 # Load Model
