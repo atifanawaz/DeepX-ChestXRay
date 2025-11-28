@@ -329,7 +329,7 @@ with st.sidebar:
 # -------------------------------------------------
 st.markdown(f"""
 <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-    <img src="images\medical-stethoscope-isolated-white-background_1042381-5537.jpg" width="50">
+    <img src="images/medical-stethoscope-isolated-white-background_1042381-5537.jpg" width="50">
     <h1 style="
         font-size: 3rem;
         font-weight: 800;
@@ -344,6 +344,7 @@ st.markdown(f"""
     Advanced AI-powered chest X-ray analysis with explainable visualizations
 </p>
 """, unsafe_allow_html=True)
+
 
 
 # -------------------------------------------------
