@@ -15,14 +15,14 @@ from tensorflow.keras.models import load_model
 # Streamlit Configuration & Custom Styling
 # -------------------------------------------------
 
-st.markdown(""" ...SVG CODE HERE... """, unsafe_allow_html=True)
-
 st.set_page_config(
     page_title="DeepX: Chest X-Ray Diagnostic",
     page_icon="🩺",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+
 
 st.markdown("""
 <style>
