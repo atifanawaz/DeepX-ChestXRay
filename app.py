@@ -331,12 +331,6 @@ with st.sidebar:
 # Main Header
 # -------------------------------------------------
 
-st.set_page_config(
-    page_title="DeepX Diagnostic System",
-    layout="wide"
-)
-
-
 st.markdown("""
     <svg width="100%" height="90" viewBox="0 0 1200 90" xmlns="http://www.w3.org/2000/svg">
       <defs>
