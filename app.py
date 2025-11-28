@@ -15,14 +15,13 @@ from tensorflow.keras.models import load_model
 # Streamlit Configuration & Custom Styling
 # -------------------------------------------------
 
+
 st.set_page_config(
     page_title="DeepX: Chest X-Ray Diagnostic",
     page_icon="🩺",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-
 
 st.markdown("""
 <style>
@@ -33,9 +32,7 @@ st.markdown("""
     
     /* Header styling - warm coral/salmon gradient */
     .main-header {
-        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 50%, #FFA07A 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #FFA07A;
         font-size: 3rem;
         font-weight: 800;
         text-align: center;
@@ -330,42 +327,12 @@ with st.sidebar:
 # -------------------------------------------------
 # Main Header
 # -------------------------------------------------
-
-from PIL import Image, ImageDraw, ImageFont
-import numpy as np
-import streamlit as st
-
-# Parameters
-text = "🩺 DeepX Diagnostic System"
-font_size = 80
-width, height = 1200, 150
-
-# Create image
-img = Image.new("RGBA", (width, height), (255, 255, 255, 0))
-draw = ImageDraw.Draw(img)
-
-# Create gradient
-gradient = np.linspace(0, 1, width)
-colors = [(255, 107, 107), (255, 142, 114), (255, 160, 122)]  # #FF6B6B -> #FF8E72 -> #FFA07A
-
-# Draw gradient text
-try:
-    font = ImageFont.truetype("arial.ttf", font_size)
-except:
-    font = ImageFont.load_default()
-
-for i, char in enumerate(text):
-    # Compute color for this char
-    t = i / max(len(text)-1,1)
-    r = int(colors[0][0]*(1-t) + colors[-1][0]*t)
-    g = int(colors[0][1]*(1-t) + colors[-1][1]*t)
-    b = int(colors[0][2]*(1-t) + colors[-1][2]*t)
-    draw.text((10 + i*font_size*0.55, 10), char, font=font, fill=(r,g,b))
-
-# Display in Streamlit
-st.image(img, use_column_width=True)
-st.markdown('<p style="text-align:center; color:#6B5B5B; font-size:1.1rem;">Advanced AI-powered chest X-ray analysis with explainable visualizations</p>', unsafe_allow_html=True)
-
+st.markdown('<h1 class="main-header">🩺 DeepX Diagnostic System</h1>', unsafe_allow_html=True)
+st.markdown("""
+  <p class="sub-header">
+      Advanced AI-powered chest X-ray analysis with explainable visualizations
+  </p>
+""", unsafe_allow_html=True)
 
 
 # -------------------------------------------------
