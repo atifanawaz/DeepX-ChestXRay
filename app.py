@@ -327,11 +327,22 @@ with st.sidebar:
 # -------------------------------------------------
 # Main Header
 # -------------------------------------------------
-st.markdown('<h1 class="main-header">🩺 DeepX Diagnostic System</h1>', unsafe_allow_html=True)
-st.markdown("""
-  <p class="sub-header">
-      Advanced AI-powered chest X-ray analysis with explainable visualizations
-  </p>
+st.markdown(f"""
+<div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+    <img src="images\medical-stethoscope-isolated-white-background_1042381-5537.jpg" width="50">
+    <h1 style="
+        font-size: 3rem;
+        font-weight: 800;
+        color: #FFA07A;
+        margin: 0;
+    ">
+        DeepX Diagnostic System
+    </h1>
+</div>
+
+<p style="text-align:center; color:#6B5B5B; font-size:1.1rem; margin-top:5px;">
+    Advanced AI-powered chest X-ray analysis with explainable visualizations
+</p>
 """, unsafe_allow_html=True)
 
 
