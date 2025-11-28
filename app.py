@@ -465,7 +465,7 @@ if uploaded_file:
     with col_image:
         st.markdown("""
             <div class="card">
-                <div class="card-title"> Uploaded X-Ray </div>
+                <div class="card-title">📥 Uploaded X-Ray </div>
             </div>
         """, unsafe_allow_html=True)
         st.image(img_resized, width=400)
