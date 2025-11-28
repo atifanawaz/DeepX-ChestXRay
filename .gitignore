@@ -1,12 +1,27 @@
-# ignore dataset and caches
+# Ignore dataset and caches
 dataset/
 __pycache__/
 *.pyc
 *.pkl
-.env
-.vscode/
 
-# model files
+# Environment files
+.env
+.venv/
+venv/
+*.env
+
+# IDE/editor settings
+.vscode/
+.vs/
+
+# Model files
 *.h5
 *.keras
 model/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
