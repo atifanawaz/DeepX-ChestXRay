@@ -1,0 +1,12 @@
+# ignore dataset and caches
+dataset/
+__pycache__/
+*.pyc
+*.pkl
+.env
+.vscode/
+
+# model files
+*.h5
+*.keras
+model/
