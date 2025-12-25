@@ -1,4 +1,5 @@
 tensorflow==2.13.0
+<<<<<<< HEAD
 streamlit==1.29.0
 pillow==10.0.0
 numpy==1.26.2
@@ -8,3 +9,11 @@ rich==14.2.0
 markdown-it-py==4.0.0
 mdurl==0.1.2
 pygments==2.19.2
+=======
+streamlit==1.28.0
+numpy
+Pillow==9.5.0
+opencv-python
+shap
+tf-keras-vis
+>>>>>>> 48933c0 (Update runtime and fix dependencies for deployment)
