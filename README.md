@@ -1,5 +1,28 @@
 # DeepX-ChestXray: AI-Powered Chest X-Ray Diagnostic System
 
+## Frostbyte Hackathon 2026 Submission
+
+This project was enhanced and submitted as part of the **Frostbyte Hackathon 2026**, a global competition focused on Artificial Intelligence, Machine Learning, and real-world technological innovation.
+
+DeepX-ChestXray is an AI-powered system designed to assist in the analysis of chest X-ray images using deep learning models and explainable AI techniques.
+
+The system allows users to upload chest X-ray images and receive:
+
+• AI-based classification results  
+• Probability scores for predictions  
+• Explainable visualizations using GradCAM++  
+• Real-time inference through an interactive web interface  
+
+This project demonstrates how **machine learning and explainable AI can assist medical imaging research and education**.
+
+⚠️ Note: This system is intended for research and educational purposes only and should not be used for clinical diagnosis.
+
+## Hackathon Category
+
+Artificial Intelligence & Machine Learning
+
+This project demonstrates the application of deep learning and explainable AI techniques for medical image analysis, aligning with the AI/ML theme of the Frostbyte Hackathon.
+
 ## Project Overview
 DeepX-ChestXray is an AI-powered web application designed for automated analysis of chest X-ray images. Using state-of-the-art convolutional neural networks (CNNs), the system performs classification of chest X-rays and provides explainable visualizations to help understand model predictions.
 
