@@ -437,6 +437,8 @@ if uploaded_file:
         result_class = "result-normal"
         result_icon = "✔"
 
+    st.success(f"Prediction Confidence: {confidence*100:.2f}%")
+
     # Results Display
     col_result, col_image = st.columns([1, 1])
     
