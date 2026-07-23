@@ -867,8 +867,10 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
     }
     /* ================================================
-       LANDING PAGE STYLES (new)
+       LANDING PAGE STYLES (Medicy-inspired, green theme)
        ================================================ */
+    .lp-wrap { font-family: inherit; }
+
     .lp-navbar {
         display: flex;
         justify-content: space-between;
@@ -876,50 +878,51 @@ st.markdown("""
         padding: 1rem 1.75rem;
         background: #ffffff;
         border-radius: 20px;
-        border: 1px solid #FFE0D6;
-        box-shadow: 0 4px 20px rgba(255, 107, 107, 0.06);
+        border: 1px solid #E3F2E8;
+        box-shadow: 0 4px 20px rgba(22, 163, 74, 0.06);
         margin-bottom: 1.5rem;
         flex-wrap: wrap;
         gap: 0.75rem;
     }
-    .lp-logo { font-size: 1.4rem; font-weight: 800; color: #3D3D3D; }
+    .lp-logo { font-size: 1.4rem; font-weight: 800; color: #16241c; }
+    .lp-logo span { color: #16a34a; }
     .lp-navlinks a {
-        color: #6B5B5B;
+        color: #4b5a52;
         text-decoration: none;
         margin: 0 0.9rem;
         font-weight: 500;
         font-size: 0.95rem;
     }
-    .lp-navlinks a:hover { color: #FF6B6B; }
+    .lp-navlinks a:hover { color: #16a34a; }
 
     .lp-hero {
-        background: linear-gradient(135deg, #FFF0EB 0%, #FFE3DC 100%);
+        background: linear-gradient(135deg, #EAFBF1 0%, #F3FFF7 60%, #EFFDF4 100%);
         border-radius: 32px;
         padding: 3rem 2.5rem 1rem 2.5rem;
         text-align: center;
-        border: 1px solid #FFE0D6;
+        border: 1px solid #E3F2E8;
     }
     .lp-pill {
         display: inline-block;
         background: #ffffff;
-        color: #FF6B6B;
+        color: #16a34a;
         padding: 0.4rem 1.1rem;
         border-radius: 999px;
         font-size: 0.85rem;
         font-weight: 700;
-        border: 1px solid #FFD0C4;
+        border: 1px solid #CFF3DB;
         margin-bottom: 1.2rem;
     }
     .lp-hero-title {
         font-size: 2.75rem;
         font-weight: 800;
-        color: #3D3D3D;
+        color: #16241c;
         line-height: 1.15;
         margin-bottom: 1rem;
         letter-spacing: -1px;
     }
     .lp-hero-sub {
-        color: #6B5B5B;
+        color: #536259;
         font-size: 1.05rem;
         max-width: 640px;
         margin: 0 auto 1.5rem auto;
@@ -938,12 +941,17 @@ st.markdown("""
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 8px 20px rgba(255, 107, 107, 0.15);
-        border: 1px solid #FFE0D6;
+        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.15);
+        border: 1px solid #E3F2E8;
     }
     .lp-orb-lg { width: 140px; height: 140px; font-size: 3.2rem; }
     .lp-orb-md { width: 92px; height: 92px; font-size: 2.1rem; }
     .lp-orb-sm { width: 68px; height: 68px; font-size: 1.6rem; }
+    .lp-orb-play {
+        background: #16a34a;
+        color: #ffffff;
+        box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+    }
 
     .lp-stat-float {
         display: inline-flex;
@@ -952,17 +960,17 @@ st.markdown("""
         background: #ffffff;
         padding: 0.6rem 1.1rem;
         border-radius: 16px;
-        box-shadow: 0 6px 16px rgba(255, 107, 107, 0.12);
-        border: 1px solid #FFE0D6;
+        box-shadow: 0 6px 16px rgba(22, 163, 74, 0.12);
+        border: 1px solid #E3F2E8;
         font-weight: 700;
-        color: #3D3D3D;
+        color: #16241c;
         font-size: 0.85rem;
     }
 
     .lp-darkbar {
-        background: linear-gradient(135deg, #3D3D3D 0%, #4A4040 100%);
-        border-radius: 24px;
-        padding: 1.25rem 2rem;
+        background: linear-gradient(135deg, #0d1f13 0%, #16281c 100%);
+        border-radius: 999px;
+        padding: 1rem 1.75rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -970,49 +978,146 @@ st.markdown("""
         gap: 1rem;
         margin: 2rem 0 1rem 0;
     }
-    .lp-darkbar-text { color: #D9C9C3; font-size: 0.9rem; margin: 0; }
-    .lp-darkbar-strong { color: #FFB5A7; font-weight: 700; }
+    .lp-darkbar-text { color: #cfe3d5; font-size: 0.88rem; margin: 0; }
+    .lp-darkbar-strong { color: #4ade80; font-weight: 700; }
 
+    .lp-section-tag {
+        display: block;
+        text-align: center;
+        color: #16a34a;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 2.5rem;
+    }
     .lp-section-title {
         text-align: center;
         font-size: 2rem;
         font-weight: 800;
-        color: #3D3D3D;
-        margin: 2.5rem 0 0.4rem 0;
+        color: #16241c;
+        margin: 0.3rem 0 0.4rem 0;
     }
     .lp-section-sub {
         text-align: center;
-        color: #8B7575;
+        color: #6b7a71;
         margin-bottom: 1.5rem;
     }
 
+    .lp-avatar-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+    .lp-avatar-badge-icon {
+        width: 46px; height: 46px; border-radius: 50%;
+        background: #16a34a; color: white;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; font-weight: 700;
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+    }
+    .lp-avatar-badge-text { color: #16241c; font-weight: 700; font-size: 0.95rem; }
+    .lp-avatar-badge-sub { color: #8a978f; font-size: 0.8rem; font-weight: 400; }
+
     .lp-feature-card {
-        background: #ffffff;
         border-radius: 20px;
         padding: 1.5rem;
-        border: 1px solid #FFE0D6;
-        box-shadow: 0 4px 20px rgba(255, 107, 107, 0.06);
+        border: 1px solid rgba(0,0,0,0.04);
         height: 100%;
         min-height: 190px;
     }
     .lp-feature-dot { width: 10px; height: 10px; border-radius: 50%; margin-bottom: 0.9rem; }
-    .lp-feature-card h4 { color: #3D3D3D; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .lp-feature-card p { color: #8B7575; font-size: 0.88rem; margin: 0; }
+    .lp-feature-card h4 { color: #16241c; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .lp-feature-card p { color: #5c6b62; font-size: 0.88rem; margin: 0 0 0.75rem 0; }
+    .lp-feature-card a { color: #16a34a; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
 
     .lp-quality-card {
         background: #ffffff;
         border-radius: 20px;
         padding: 1.75rem;
-        border: 1px solid #FFE0D6;
-        box-shadow: 0 4px 20px rgba(255, 107, 107, 0.06);
+        border: 1px solid #E3F2E8;
+        box-shadow: 0 4px 20px rgba(22, 163, 74, 0.06);
     }
-    .lp-quality-card li { color: #6B5B5B; margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .lp-quality-card li { color: #536259; margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .lp-check { color: #16a34a; font-weight: 700; margin-right: 0.4rem; }
+
+    .lp-stat-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid #E3F2E8;
+    }
+    .lp-stat-item { text-align: center; flex: 1; min-width: 90px; }
+    .lp-stat-item .lp-stat-num { font-size: 1.4rem; font-weight: 800; color: #16241c; }
+    .lp-stat-item .lp-stat-label { font-size: 0.78rem; color: #8a978f; }
+
+    .lp-pillrow {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0 2rem 0;
+    }
+    .lp-pillrow span {
+        background: #ffffff;
+        border: 1px solid #E3F2E8;
+        border-radius: 999px;
+        padding: 0.45rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #16241c;
+        box-shadow: 0 2px 10px rgba(22, 163, 74, 0.06);
+    }
+    .lp-pillrow span.active { background: #16a34a; color: #ffffff; border-color: #16a34a; }
+
+    .lp-darkfooter {
+        background: linear-gradient(135deg, #0d1f13 0%, #16281c 100%);
+        border-radius: 28px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        margin-top: 2.5rem;
+    }
+    .lp-darkfooter h3 { color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem; }
+    .lp-darkfooter p { color: #9db8a4; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .lp-tech-row {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .lp-tech-pill {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: #d7e8db;
+        padding: 0.5rem 1.1rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
 
     .lp-footer-note {
         text-align: center;
-        color: #C4B0A8;
+        color: #9aa8a0;
         font-size: 0.8rem;
         margin-top: 1.5rem;
+    }
+
+    /* Primary (green) buttons used for Try It Now CTAs */
+    button[kind="primary"] {
+        background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%) !important;
+        border: none !important;
+        border-radius: 999px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 6px 16px rgba(22, 163, 74, 0.25) !important;
+    }
+    button[kind="primary"]:hover {
+        background: linear-gradient(135deg, #128a3e 0%, #1ea750 100%) !important;
+        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.35) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -1031,22 +1136,29 @@ def _go_to_landing():
 
 def render_landing():
     # Top navbar
-    st.markdown("""
-        <div class="lp-navbar">
-            <div class="lp-logo">💉 DeepX</div>
-            <div class="lp-navlinks">
-                <a href="#capabilities">Capabilities</a>
-                <a href="#quality">How It Works</a>
-                <a href="#footer-note">About</a>
+    nav_l, nav_m, nav_r = st.columns([2, 3, 1.4])
+    with nav_l:
+        st.markdown('<div class="lp-navbar" style="justify-content:flex-start;"><div class="lp-logo">🫁 Deep<span>X</span></div></div>', unsafe_allow_html=True)
+    with nav_m:
+        st.markdown("""
+            <div class="lp-navbar">
+                <div class="lp-navlinks">
+                    <a href="#capabilities">Capabilities</a>
+                    <a href="#quality">How It Works</a>
+                    <a href="#footer-note">About</a>
+                </div>
             </div>
-        </div>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
+    with nav_r:
+        if st.button("Try It Now", key="cta_nav", type="primary", use_container_width=True):
+            _go_to_app()
+            st.rerun()
 
     # Hero
     st.markdown("""
         <div class="lp-hero">
             <span class="lp-pill">🩺 AI-Powered Chest X-Ray Diagnostics</span>
-            <div class="lp-hero-title">Accurate, Explainable<br>Chest X-Ray Analysis — Instantly</div>
+            <div class="lp-hero-title">Clear Diagnosis for Your<br>Chest X-Rays — Instantly</div>
             <p class="lp-hero-sub">
                 Upload a chest X-ray and get an AI-powered diagnosis in seconds — backed by
                 GradCAM++ and Integrated Gradients explainability, so you can see exactly
@@ -1055,7 +1167,7 @@ def render_landing():
             <div class="lp-orbits">
                 <div class="lp-orb lp-orb-sm">🧠</div>
                 <div class="lp-orb lp-orb-md">🩻</div>
-                <div class="lp-orb lp-orb-lg">🫁</div>
+                <div class="lp-orb lp-orb-lg lp-orb-play">▶</div>
                 <div class="lp-orb lp-orb-md">📊</div>
                 <div class="lp-orb lp-orb-sm">⚡</div>
             </div>
@@ -1067,44 +1179,53 @@ def render_landing():
         </div>
     """, unsafe_allow_html=True)
 
-    _, cta_col, _ = st.columns([1, 1, 1])
-    with cta_col:
-        if st.button("🚀 Try It Now", key="cta_hero", use_container_width=True):
-            _go_to_app()
-            st.rerun()
-
     st.markdown("""
         <div class="lp-darkbar">
-            <p class="lp-darkbar-text">🔬 Model: <span class="lp-darkbar-strong">CNN</span> trained on chest X-ray imaging data</p>
+            <p class="lp-darkbar-text">🔬 Model: <span class="lp-darkbar-strong">CNN</span> trained on chest X-ray data</p>
             <p class="lp-darkbar-text">📐 Input resolution: <span class="lp-darkbar-strong">224×224</span></p>
             <p class="lp-darkbar-text">🎓 <span class="lp-darkbar-strong">Educational &amp; research use only</span></p>
         </div>
     """, unsafe_allow_html=True)
 
-    # Capabilities section (feature cards)
+    _, cta_col, _ = st.columns([1, 1, 1])
+    with cta_col:
+        if st.button("🚀 Ma Diagnostic Gratuit — Try It Now", key="cta_hero", type="primary", use_container_width=True):
+            _go_to_app()
+            st.rerun()
+
+    # Capabilities section (feature cards, styled like the reference "Abonnements" cards)
     st.markdown('<div id="capabilities"></div>', unsafe_allow_html=True)
     st.markdown('<div class="lp-section-title">Our Capabilities</div>', unsafe_allow_html=True)
-    st.markdown('<div class="lp-section-sub">Everything the model gives you in a single upload</div>', unsafe_allow_html=True)
+    st.markdown('<div class="lp-section-sub">Everything the model gives you from a single upload</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+        <div class="lp-avatar-badge">
+            <div class="lp-avatar-badge-icon">AI</div>
+            <div class="lp-avatar-badge-text">Trusted by researchers &amp; learners<br><span class="lp-avatar-badge-sub">Built with TensorFlow &amp; Streamlit</span></div>
+        </div>
+    """, unsafe_allow_html=True)
 
     cards = [
-        ("#FF6B6B", "🧠", "CNN Classifier", "A deep learning model trained to detect pneumonia-related patterns in chest X-rays."),
-        ("#7BC67E", "🔥", "GradCAM++", "Visual heatmaps that highlight exactly which regions of the X-ray influenced the result."),
-        ("#5AA9E6", "⚡", "Integrated Gradients", "Pixel-level attribution mapping that shows which details mattered most to the model."),
-        ("#F2B84B", "⏱️", "Real-Time Results", "Get a diagnosis, confidence score, and explainability maps back in seconds."),
+        ("#EDE9FE", "#8B5CF6", "🧠", "CNN Classifier", "A deep learning model trained to detect pneumonia-related patterns in chest X-rays."),
+        ("#DCFCE7", "#16A34A", "🔥", "GradCAM++", "Visual heatmaps that highlight exactly which regions of the X-ray influenced the result."),
+        ("#FFE4D6", "#F2764A", "⚡", "Integrated Gradients", "Pixel-level attribution mapping that shows which details mattered most to the model."),
+        ("#DBEAFE", "#3B82F6", "⏱️", "Real-Time Results", "Get a diagnosis, confidence score, and explainability maps back in seconds."),
     ]
     fcols = st.columns(4)
-    for col, (color, icon, title, desc) in zip(fcols, cards):
+    for col, (bg, dot, icon, title, desc) in zip(fcols, cards):
         with col:
             st.markdown(f"""
-                <div class="lp-feature-card">
-                    <div class="lp-feature-dot" style="background:{color};"></div>
+                <div class="lp-feature-card" style="background:{bg};">
+                    <div class="lp-feature-dot" style="background:{dot};"></div>
                     <h4>{icon} {title}</h4>
                     <p>{desc}</p>
+                    <a href="#quality">En savoir plus →</a>
                 </div>
             """, unsafe_allow_html=True)
 
     # Quality / trust section
     st.markdown('<div id="quality"></div>', unsafe_allow_html=True)
+    st.markdown('<span class="lp-section-tag">Qualité</span>', unsafe_allow_html=True)
     st.markdown('<div class="lp-section-title">Built for Clinical-Grade Insight</div>', unsafe_allow_html=True)
     st.markdown('<div class="lp-section-sub">Not just a prediction — a transparent one</div>', unsafe_allow_html=True)
 
@@ -1112,48 +1233,62 @@ def render_landing():
     with q_left:
         st.markdown("""
             <div class="lp-quality-card">
-                <ul style="padding-left: 1.25rem; margin: 0;">
-                    <li>Every prediction is paired with GradCAM++ and Integrated Gradients maps</li>
-                    <li>Confidence scores are shown alongside every diagnosis</li>
-                    <li>Model trained and evaluated on chest X-ray imaging data</li>
-                    <li>Built with TensorFlow, Keras, and Streamlit for fast iteration</li>
+                <ul style="list-style:none; padding-left: 0; margin: 0;">
+                    <li><span class="lp-check">✔</span>Every prediction is paired with GradCAM++ and Integrated Gradients maps</li>
+                    <li><span class="lp-check">✔</span>Confidence scores are shown alongside every diagnosis</li>
+                    <li><span class="lp-check">✔</span>Model trained and evaluated on chest X-ray imaging data</li>
+                    <li><span class="lp-check">✔</span>Built with TensorFlow, Keras, and Streamlit for fast iteration</li>
                 </ul>
+                <div class="lp-stat-row">
+                    <div class="lp-stat-item"><div class="lp-stat-num">224²</div><div class="lp-stat-label">Resolution</div></div>
+                    <div class="lp-stat-item"><div class="lp-stat-num">3</div><div class="lp-stat-label">XAI Methods</div></div>
+                    <div class="lp-stat-item"><div class="lp-stat-num">CNN</div><div class="lp-stat-label">Architecture</div></div>
+                    <div class="lp-stat-item"><div class="lp-stat-num">⚡</div><div class="lp-stat-label">Real-Time</div></div>
+                </div>
             </div>
         """, unsafe_allow_html=True)
     with q_right:
-        s1, s2 = st.columns(2)
-        with s1:
-            st.markdown("""
-                <div class="metric-card" style="margin-bottom: 1rem;">
-                    <div class="metric-value">224×224</div>
-                    <div class="metric-label">Input Resolution</div>
-                </div>
-            """, unsafe_allow_html=True)
-            st.markdown("""
-                <div class="metric-card">
-                    <div class="metric-value">3</div>
-                    <div class="metric-label">XAI Methods</div>
-                </div>
-            """, unsafe_allow_html=True)
-        with s2:
-            st.markdown("""
-                <div class="metric-card" style="margin-bottom: 1rem;">
-                    <div class="metric-value">CNN</div>
-                    <div class="metric-label">Model Type</div>
-                </div>
-            """, unsafe_allow_html=True)
-            st.markdown("""
-                <div class="metric-card">
-                    <div class="metric-value">⚡</div>
-                    <div class="metric-label">Real-Time</div>
-                </div>
-            """, unsafe_allow_html=True)
+        st.markdown("""
+            <div class="lp-feature-card" style="background:#0d1f13; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height: 100%;">
+                <div style="font-size:3rem; margin-bottom: 0.75rem;">🫁</div>
+                <h4 style="color:#ffffff;">See It In Action</h4>
+                <p style="color:#9db8a4; margin-bottom:1rem;">Upload a chest X-ray and watch the model explain its own reasoning in real time.</p>
+            </div>
+        """, unsafe_allow_html=True)
+
+    # Explainability toolkit pill row
+    st.markdown('<div class="lp-section-title" style="margin-top:2.5rem;">Explainability Toolkit</div>', unsafe_allow_html=True)
+    st.markdown('<div class="lp-section-sub">Notre expertise au service de votre diagnostic</div>', unsafe_allow_html=True)
+    st.markdown("""
+        <div class="lp-pillrow">
+            <span class="active">✅ Confidence Score</span>
+            <span>🔥 GradCAM++</span>
+            <span>⚡ Integrated Gradients</span>
+            <span>🧠 CNN Model</span>
+            <span>📊 224×224 Input</span>
+        </div>
+    """, unsafe_allow_html=True)
 
     _, cta_col2, _ = st.columns([1, 1, 1])
     with cta_col2:
-        if st.button("🚀 Try It Now", key="cta_bottom", use_container_width=True):
+        if st.button("🚀 Try It Now", key="cta_bottom", type="primary", use_container_width=True):
             _go_to_app()
             st.rerun()
+
+    # Closing dark section (mirrors the reference's dark team strip)
+    st.markdown("""
+        <div class="lp-darkfooter">
+            <h3>Powered By</h3>
+            <p>The open-source stack behind DeepX's diagnostics</p>
+            <div class="lp-tech-row">
+                <span class="lp-tech-pill">🐍 TensorFlow / Keras</span>
+                <span class="lp-tech-pill">🎈 Streamlit</span>
+                <span class="lp-tech-pill">🔥 tf-keras-vis</span>
+                <span class="lp-tech-pill">🧩 SHAP</span>
+                <span class="lp-tech-pill">🖼️ OpenCV</span>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
         <p id="footer-note" class="lp-footer-note">
@@ -1505,4 +1640,3 @@ st.markdown("""
         </p>
     </div>
 """, unsafe_allow_html=True)
-
