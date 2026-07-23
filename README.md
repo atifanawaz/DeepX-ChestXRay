@@ -1,10 +1,10 @@
-# DeepX-ChestXray: AI-Powered Chest X-Ray Diagnostic System
+# XplainX: AI-Powered Chest X-Ray Diagnostic System
 
 ## Frostbyte Hackathon 2026 Submission
 
 This project was enhanced and submitted as part of the **Frostbyte Hackathon 2026**, a global competition focused on Artificial Intelligence, Machine Learning, and real-world technological innovation.
 
-DeepX-ChestXray is an AI-powered system designed to assist in the analysis of chest X-ray images using deep learning models and explainable AI techniques.
+XplainX is an AI-powered system designed to assist in the analysis of chest X-ray images using deep learning models and explainable AI techniques.
 
 The system allows users to upload chest X-ray images and receive:
 
@@ -24,10 +24,10 @@ Artificial Intelligence & Machine Learning
 This project demonstrates the application of deep learning and explainable AI techniques for medical image analysis, aligning with the AI/ML theme of the Frostbyte Hackathon.
 
 ## Project Overview
-DeepX-ChestXray is an AI-powered web application designed for automated analysis of chest X-ray images. Using state-of-the-art convolutional neural networks (CNNs), the system performs classification of chest X-rays and provides explainable visualizations to help understand model predictions.
+XplainX is an AI-powered web application designed for automated analysis of chest X-ray images. Using state-of-the-art convolutional neural networks (CNNs), the system performs classification of chest X-rays and provides explainable visualizations to help understand model predictions.
 
 The platform is built with an interactive Streamlit interface, making it accessible for researchers, educators, and AI enthusiasts to explore AI-based medical imaging.  
-You can access the live application here: [DeepX-ChestXray Web App](https://deepx-chestxray.streamlit.app/)
+You can access the live application here: [XplainX Web App](https://deepx-chestxray.streamlit.app/)
 
 ### Key Features
 - Classification of chest X-rays into normal or abnormal/pathology-specific categories
@@ -40,7 +40,7 @@ You can access the live application here: [DeepX-ChestXray Web App](https://deep
 
 ## Project Structure
 ````
-DeepX-ChestXray/
+xplainx/
 ├── app.py # Main Streamlit application script
 ├── models/ # Pre-trained CNN models
 │ ├── cnn_model_final.keras
@@ -59,8 +59,8 @@ DeepX-ChestXray/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/DeepX-ChestXray.git
-cd DeepX-ChestXray
+git clone https://github.com/yourusername/xplainx.git
+cd xplainx
 ```
 
 2. Install dependencies:
