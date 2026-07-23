@@ -629,9 +629,17 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-    /* Main background - soft cream with peachy gradient */
+    /* Main background - plain white */
     .stApp {
-        background: linear-gradient(135deg, #FFF5F3 0%, #FFE8E3 50%, #FFF0EB 100%);
+        background: #ffffff;
+    }
+
+    /* Remove Streamlit's colored top decoration bar */
+    [data-testid="stDecoration"] {
+        display: none;
+    }
+    header[data-testid="stHeader"] {
+        background: transparent;
     }
     
     /* Header styling - warm coral/salmon gradient */
@@ -866,133 +874,256 @@ st.markdown("""
         background: linear-gradient(135deg, #FF5252 0%, #FF7A5C 100%);
         box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
     }
-    /* ================================================================
-       LANDING PAGE DESIGN SYSTEM (Citadel-AI inspired)
-       ================================================================ */
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,wght@1,500;1,600&display=swap');
+    /* ================================================
+       LANDING PAGE STYLES (Medicy-inspired, green theme, white page bg)
+       ================================================ */
+    .lp-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.75rem;
+        background: #ffffff;
+        border-radius: 20px;
+        border: 1px solid #E3F2E8;
+        box-shadow: 0 4px 20px rgba(22, 163, 74, 0.06);
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    .lp-logo { font-size: 1.4rem; font-weight: 800; color: #16241c; }
+    .lp-logo span { color: #16a34a; }
+    .lp-navlinks a {
+        color: #4b5a52;
+        text-decoration: none;
+        margin: 0 0.9rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+    .lp-navlinks a:hover { color: #16a34a; }
 
-    :root {
-      --cf-bg: #f4f6fc;
-      --cf-bg-soft: #eef1fb;
-      --cf-surface: #ffffff;
-      --cf-surface-alt: #fbfcff;
-      --cf-border: #e6e9f5;
-      --cf-border-strong: #d6dbf0;
-
-      --cf-accent-1: #3d5afe;
-      --cf-accent-2: #7c8cff;
-      --cf-accent-3: #a56bff;
-      --cf-accent-grad: linear-gradient(135deg, var(--cf-accent-1), var(--cf-accent-2));
-      --cf-accent-grad-soft: linear-gradient(135deg, rgba(61, 90, 254, 0.10), rgba(165, 107, 255, 0.06));
-
-      --cf-text-primary: #10142b;
-      --cf-text-secondary: #545b74;
-      --cf-text-muted: #8891ab;
-
-      --cf-info-bg: #eaf1ff;
-      --cf-info-border: #c6dbfd;
-
-      --cf-radius-sm: 10px;
-      --cf-radius-md: 16px;
-      --cf-radius-lg: 24px;
-      --cf-radius-pill: 999px;
-
-      --cf-shadow-sm: 0 1px 2px rgba(16, 20, 43, 0.04);
-      --cf-shadow-card: 0 6px 24px rgba(30, 41, 100, 0.06);
-      --cf-shadow-card-hover: 0 14px 40px rgba(30, 41, 100, 0.10);
-      --cf-shadow-accent: 0 10px 28px rgba(61, 90, 254, 0.22);
-
-      --cf-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --cf-font-serif: 'Newsreader', Georgia, serif;
+    .lp-hero {
+        background: linear-gradient(135deg, #EAFBF1 0%, #F3FFF7 60%, #EFFDF4 100%);
+        border-radius: 32px;
+        padding: 3rem 2.5rem 1rem 2.5rem;
+        text-align: center;
+        border: 1px solid #E3F2E8;
+    }
+    .lp-pill {
+        display: inline-block;
+        background: #ffffff;
+        color: #16a34a;
+        padding: 0.4rem 1.1rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        border: 1px solid #CFF3DB;
+        margin-bottom: 1.2rem;
+    }
+    .lp-hero-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: #16241c;
+        line-height: 1.15;
+        margin-bottom: 1rem;
+        letter-spacing: -1px;
+    }
+    .lp-hero-sub {
+        color: #536259;
+        font-size: 1.05rem;
+        max-width: 640px;
+        margin: 0 auto 1.5rem auto;
+    }
+    .lp-orbits {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.25rem;
+        margin: 1.5rem 0;
+        flex-wrap: wrap;
+    }
+    .lp-orb {
+        background: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.15);
+        border: 1px solid #E3F2E8;
+    }
+    .lp-orb-lg { width: 140px; height: 140px; font-size: 3.2rem; }
+    .lp-orb-md { width: 92px; height: 92px; font-size: 2.1rem; }
+    .lp-orb-sm { width: 68px; height: 68px; font-size: 1.6rem; }
+    .lp-orb-play {
+        background: #16a34a;
+        color: #ffffff;
+        box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
     }
 
-    #lp-root, #lp-root * { font-family: var(--cf-font) !important; }
-
-    #lp-root {
-      background:
-        radial-gradient(ellipse 900px 500px at 8% -5%, rgba(61, 90, 254, 0.10) 0%, transparent 55%),
-        radial-gradient(ellipse 700px 500px at 100% 0%, rgba(165, 107, 255, 0.08) 0%, transparent 50%),
-        var(--cf-bg);
-      border-radius: var(--cf-radius-lg);
-      padding: 0.25rem 0 2rem 0;
-      margin-bottom: 1rem;
+    .lp-stat-float {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #ffffff;
+        padding: 0.6rem 1.1rem;
+        border-radius: 16px;
+        box-shadow: 0 6px 16px rgba(22, 163, 74, 0.12);
+        border: 1px solid #E3F2E8;
+        font-weight: 700;
+        color: #16241c;
+        font-size: 0.85rem;
     }
 
-    .cf-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--cf-accent-1); background: var(--cf-info-bg);
-      border: 1px solid var(--cf-info-border); padding: 0.32rem 0.8rem; border-radius: var(--cf-radius-pill);
-      margin-bottom: 1rem;
+    .lp-darkbar {
+        background: linear-gradient(135deg, #0d1f13 0%, #16281c 100%);
+        border-radius: 999px;
+        padding: 1rem 1.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 2rem 0 1rem 0;
     }
-    .cf-landing-hero { text-align: center; padding: 2rem 1rem 0.5rem 1rem; }
-    .cf-landing-title {
-      font-size: 2.75rem; font-weight: 800; line-height: 1.16; letter-spacing: -0.02em;
-      margin: 0 auto 1rem auto; color: var(--cf-text-primary); max-width: 780px;
-    }
-    .cf-accent-text {
-      font-family: var(--cf-font-serif) !important; font-style: italic; font-weight: 600;
-      background: var(--cf-accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .cf-landing-sub { font-size: 1.05rem; color: var(--cf-text-secondary); line-height: 1.65; max-width: 560px; margin: 0 auto 1rem auto; }
+    .lp-darkbar-text { color: #cfe3d5; font-size: 0.88rem; margin: 0; }
+    .lp-darkbar-strong { color: #4ade80; font-weight: 700; }
 
-    .cf-trust-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
-    .cf-badge {
-      font-size: 0.68rem; font-weight: 600; color: var(--cf-accent-1); background: var(--cf-info-bg);
-      border: 1px solid var(--cf-info-border); padding: 0.28rem 0.6rem; border-radius: var(--cf-radius-pill);
+    .lp-section-tag {
+        display: block;
+        text-align: center;
+        color: #16a34a;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 2.5rem;
+    }
+    .lp-section-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #16241c;
+        margin: 0.3rem 0 0.4rem 0;
+    }
+    .lp-section-sub {
+        text-align: center;
+        color: #6b7a71;
+        margin-bottom: 1.5rem;
     }
 
-    .cf-landing-section-label {
-      text-align: center; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--cf-accent-1); margin: 0 0 0.6rem 0;
+    .lp-avatar-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
     }
-    .cf-landing-section-title {
-      text-align: center; font-size: 1.85rem; font-weight: 800; letter-spacing: -0.01em;
-      color: var(--cf-text-primary); margin: 0 auto 0.6rem auto; max-width: 640px;
+    .lp-avatar-badge-icon {
+        width: 46px; height: 46px; border-radius: 50%;
+        background: #16a34a; color: white;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; font-weight: 700;
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
     }
-    .cf-landing-section-sub { text-align: center; font-size: 0.95rem; color: var(--cf-text-muted); max-width: 520px; margin: 0 auto 1.5rem auto; }
+    .lp-avatar-badge-text { color: #16241c; font-weight: 700; font-size: 0.95rem; }
+    .lp-avatar-badge-sub { color: #8a978f; font-size: 0.8rem; font-weight: 400; }
 
-    .cf-feature-card {
-      background: var(--cf-surface); border: 1px solid var(--cf-border); border-radius: var(--cf-radius-lg);
-      padding: 1.6rem; margin: 0.4rem 0; box-shadow: var(--cf-shadow-card);
-      height: 100%; min-height: 168px;
+    .lp-feature-card {
+        border-radius: 20px;
+        padding: 1.5rem;
+        border: 1px solid rgba(0,0,0,0.04);
+        height: 100%;
+        min-height: 190px;
     }
-    .cf-feature-icon {
-      width: 44px; height: 44px; border-radius: 13px; background: var(--cf-accent-grad);
-      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-      box-shadow: var(--cf-shadow-accent); margin-bottom: 1rem;
-    }
-    .cf-feature-title { font-size: 1.0rem; font-weight: 700; color: var(--cf-text-primary); margin: 0 0 0.4rem 0; }
-    .cf-feature-desc { font-size: 0.86rem; color: var(--cf-text-muted); line-height: 1.55; margin: 0; }
+    .lp-feature-dot { width: 10px; height: 10px; border-radius: 50%; margin-bottom: 0.9rem; }
+    .lp-feature-card h4 { color: #16241c; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .lp-feature-card p { color: #5c6b62; font-size: 0.88rem; margin: 0 0 0.75rem 0; }
+    .lp-feature-card a { color: #16a34a; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
 
-    .cf-step-card {
-      background: var(--cf-surface); border: 1px solid var(--cf-border); border-radius: var(--cf-radius-md);
-      padding: 1.4rem 1.1rem; margin: 0.4rem 0; text-align: center; height: 100%;
-      box-shadow: var(--cf-shadow-card); position: relative; min-height: 150px;
+    .lp-quality-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 1.75rem;
+        border: 1px solid #E3F2E8;
+        box-shadow: 0 4px 20px rgba(22, 163, 74, 0.06);
     }
-    .cf-step-card-num { position: absolute; top: 0.85rem; right: 1rem; font-size: 0.72rem; font-weight: 700; color: var(--cf-text-muted); }
-    .cf-step-card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
-    .cf-step-card-title { font-size: 0.9rem; font-weight: 700; color: var(--cf-text-primary); margin: 0 0 0.35rem 0; }
-    .cf-step-card-desc { font-size: 0.79rem; color: var(--cf-text-muted); line-height: 1.5; margin: 0; }
+    .lp-quality-card li { color: #536259; margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .lp-check { color: #16a34a; font-weight: 700; margin-right: 0.4rem; }
 
-    .cf-cta-banner {
-      text-align: center; background: var(--cf-accent-grad-soft); border: 1px solid var(--cf-border-strong);
-      border-radius: var(--cf-radius-lg); padding: 2.5rem 2rem 0.5rem 2rem; margin: 1rem 0 0.5rem 0;
-      box-shadow: var(--cf-shadow-card);
+    .lp-stat-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid #E3F2E8;
     }
-    .cf-cta-banner h2 { color: var(--cf-text-primary); font-size: 1.55rem; font-weight: 800; margin: 0 0 0.5rem 0; }
-    .cf-cta-banner p { color: var(--cf-text-secondary); font-size: 0.93rem; max-width: 480px; margin: 0 auto 1.25rem auto; }
+    .lp-stat-item { text-align: center; flex: 1; min-width: 90px; }
+    .lp-stat-item .lp-stat-num { font-size: 1.4rem; font-weight: 800; color: #16241c; }
+    .lp-stat-item .lp-stat-label { font-size: 0.78rem; color: #8a978f; }
 
-    hr.cf-divider { border: none; border-top: 1px solid var(--cf-border); margin: 1.5rem 0; }
-
-    /* Buttons — Citadel accent gradient, used for Use Now / Back to Home */
-    .stButton > button {
-      background: var(--cf-accent-grad) !important; color: #fff !important; border: none !important;
-      border-radius: var(--cf-radius-sm) !important; font-weight: 700 !important; padding: 0.72rem 1.5rem !important;
-      box-shadow: var(--cf-shadow-accent) !important; transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    .lp-pillrow {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin: 1.5rem 0 2rem 0;
     }
-    .stButton > button:hover {
-      transform: translateY(-1px); box-shadow: 0 14px 34px rgba(61, 90, 254, 0.30) !important;
+    .lp-pillrow span {
+        background: #ffffff;
+        border: 1px solid #E3F2E8;
+        border-radius: 999px;
+        padding: 0.45rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #16241c;
+        box-shadow: 0 2px 10px rgba(22, 163, 74, 0.06);
+    }
+    .lp-pillrow span.active { background: #16a34a; color: #ffffff; border-color: #16a34a; }
+
+    .lp-darkfooter {
+        background: linear-gradient(135deg, #0d1f13 0%, #16281c 100%);
+        border-radius: 28px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        margin-top: 2.5rem;
+    }
+    .lp-darkfooter h3 { color: #ffffff; font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem; }
+    .lp-darkfooter p { color: #9db8a4; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .lp-tech-row {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .lp-tech-pill {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: #d7e8db;
+        padding: 0.5rem 1.1rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    .lp-footer-note {
+        text-align: center;
+        color: #9aa8a0;
+        font-size: 0.8rem;
+        margin-top: 1.5rem;
+    }
+
+    /* Primary (green) buttons used for Try It Now CTAs */
+    button[kind="primary"] {
+        background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%) !important;
+        border: none !important;
+        border-radius: 999px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 6px 16px rgba(22, 163, 74, 0.25) !important;
+    }
+    button[kind="primary"]:hover {
+        background: linear-gradient(135deg, #128a3e 0%, #1ea750 100%) !important;
+        box-shadow: 0 8px 20px rgba(22, 163, 74, 0.35) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -1010,111 +1141,167 @@ def _go_to_landing():
     st.session_state.view = "landing"
 
 def render_landing():
-    st.markdown('<div id="lp-root">', unsafe_allow_html=True)
+    # Top navbar
+    nav_l, nav_m, nav_r = st.columns([2, 3, 1.4])
+    with nav_l:
+        st.markdown('<div class="lp-navbar" style="justify-content:flex-start;"><div class="lp-logo">🫁 Deep<span>X</span></div></div>', unsafe_allow_html=True)
+    with nav_m:
+        st.markdown("""
+            <div class="lp-navbar">
+                <div class="lp-navlinks">
+                    <a href="#capabilities">Capabilities</a>
+                    <a href="#quality">How It Works</a>
+                    <a href="#footer-note">About</a>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+    with nav_r:
+        if st.button("Try It Now", key="cta_nav", type="primary", use_container_width=True):
+            _go_to_app()
+            st.rerun()
+
+    # Hero
+    st.markdown("""
+        <div class="lp-hero">
+            <span class="lp-pill">🩺 AI-Powered Chest X-Ray Diagnostics</span>
+            <div class="lp-hero-title">Clear Diagnosis for Your<br>Chest X-Rays — Instantly</div>
+            <p class="lp-hero-sub">
+                Upload a chest X-ray and get an AI-powered diagnosis in seconds — backed by
+                GradCAM++ and Integrated Gradients explainability, so you can see exactly
+                what the model is looking at.
+            </p>
+            <div class="lp-orbits">
+                <div class="lp-orb lp-orb-sm">🧠</div>
+                <div class="lp-orb lp-orb-md">🩻</div>
+                <div class="lp-orb lp-orb-lg lp-orb-play">▶</div>
+                <div class="lp-orb lp-orb-md">📊</div>
+                <div class="lp-orb lp-orb-sm">⚡</div>
+            </div>
+            <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:0.5rem;">
+                <span class="lp-stat-float">⭐ High-Accuracy CNN</span>
+                <span class="lp-stat-float">🧪 3 Explainability Methods</span>
+                <span class="lp-stat-float">⚡ Real-Time Results</span>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
-        <div class="cf-landing-hero">
-            <div class="cf-eyebrow">✦ AI-Powered Diagnostics</div>
-            <div class="cf-landing-title">
-                Diagnose. Explain. <span class="cf-accent-text">Trust.</span><br/>
-                Chest X-Rays, <span class="cf-accent-text">Instantly Analyzed.</span>
-            </div>
-            <p class="cf-landing-sub">
-                DeepX turns a chest X-ray into a grounded, explainable diagnosis. Upload an
-                image, get a prediction with a confidence score, and see exactly which regions
-                the model relied on via GradCAM++ and Integrated Gradients — every time.
-            </p>
+        <div class="lp-darkbar">
+            <p class="lp-darkbar-text">🔬 Model: <span class="lp-darkbar-strong">CNN</span> trained on chest X-ray data</p>
+            <p class="lp-darkbar-text">📐 Input resolution: <span class="lp-darkbar-strong">224×224</span></p>
+            <p class="lp-darkbar-text">🎓 <span class="lp-darkbar-strong">Educational &amp; research use only</span></p>
         </div>
     """, unsafe_allow_html=True)
 
     _, cta_col, _ = st.columns([1, 1, 1])
     with cta_col:
-        if st.button("🚀 Use Now", key="cta_hero", use_container_width=True):
+        if st.button("🚀 Ma Diagnostic Gratuit — Try It Now", key="cta_hero", type="primary", use_container_width=True):
             _go_to_app()
             st.rerun()
 
+    # Capabilities section (feature cards, styled like the reference "Abonnements" cards)
+    st.markdown('<div id="capabilities"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="lp-section-title">Our Capabilities</div>', unsafe_allow_html=True)
+    st.markdown('<div class="lp-section-sub">Everything the model gives you from a single upload</div>', unsafe_allow_html=True)
+
     st.markdown("""
-        <div class="cf-trust-row">
-            <span class="cf-badge">TensorFlow</span>
-            <span class="cf-badge">Keras</span>
-            <span class="cf-badge">Streamlit</span>
-            <span class="cf-badge">tf-keras-vis</span>
-            <span class="cf-badge">SHAP</span>
-            <span class="cf-badge">OpenCV</span>
+        <div class="lp-avatar-badge">
+            <div class="lp-avatar-badge-icon">AI</div>
+            <div class="lp-avatar-badge-text">Trusted by researchers &amp; learners<br><span class="lp-avatar-badge-sub">Built with TensorFlow &amp; Streamlit</span></div>
         </div>
-        <hr class="cf-divider" />
     """, unsafe_allow_html=True)
 
-    # Capabilities
-    st.markdown('<p class="cf-landing-section-label">✦ Capabilities</p>', unsafe_allow_html=True)
-    st.markdown('<h2 class="cf-landing-section-title">Everything you need for an explainable diagnosis</h2>', unsafe_allow_html=True)
-    st.markdown('<p class="cf-landing-section-sub">From a raw X-ray image to a cited, visual explanation — one workflow, no manual review of raw pixels.</p>', unsafe_allow_html=True)
-
-    features = [
-        ("🧠", "CNN Classifier", "A convolutional neural network trained to detect pneumonia-related patterns in chest X-rays."),
-        ("🔥", "GradCAM++ Heatmaps", "Visual heatmaps highlight exactly which regions of the X-ray influenced the model's decision."),
-        ("⚡", "Integrated Gradients", "Pixel-level attribution mapping shows which details mattered most to the prediction."),
-        ("✅", "Confidence Scoring", "Every diagnosis ships with a clear confidence percentage, not just a label."),
+    cards = [
+        ("#EDE9FE", "#8B5CF6", "🧠", "CNN Classifier", "A deep learning model trained to detect pneumonia-related patterns in chest X-rays."),
+        ("#DCFCE7", "#16A34A", "🔥", "GradCAM++", "Visual heatmaps that highlight exactly which regions of the X-ray influenced the result."),
+        ("#FFE4D6", "#F2764A", "⚡", "Integrated Gradients", "Pixel-level attribution mapping that shows which details mattered most to the model."),
+        ("#DBEAFE", "#3B82F6", "⏱️", "Real-Time Results", "Get a diagnosis, confidence score, and explainability maps back in seconds."),
     ]
-    f1, f2 = st.columns(2)
-    f3, f4 = st.columns(2)
-    for col, (icon, title, desc) in zip([f1, f2, f3, f4], features):
+    fcols = st.columns(4)
+    for col, (bg, dot, icon, title, desc) in zip(fcols, cards):
         with col:
             st.markdown(f"""
-                <div class="cf-feature-card">
-                    <div class="cf-feature-icon">{icon}</div>
-                    <p class="cf-feature-title">{title}</p>
-                    <p class="cf-feature-desc">{desc}</p>
+                <div class="lp-feature-card" style="background:{bg};">
+                    <div class="lp-feature-dot" style="background:{dot};"></div>
+                    <h4>{icon} {title}</h4>
+                    <p>{desc}</p>
+                    <a href="#quality">En savoir plus →</a>
                 </div>
             """, unsafe_allow_html=True)
 
-    st.markdown('<hr class="cf-divider" />', unsafe_allow_html=True)
+    # Quality / trust section
+    st.markdown('<div id="quality"></div>', unsafe_allow_html=True)
+    st.markdown('<span class="lp-section-tag">Qualité</span>', unsafe_allow_html=True)
+    st.markdown('<div class="lp-section-title">Built for Clinical-Grade Insight</div>', unsafe_allow_html=True)
+    st.markdown('<div class="lp-section-sub">Not just a prediction — a transparent one</div>', unsafe_allow_html=True)
 
-    # How it works
-    st.markdown('<p class="cf-landing-section-label">✦ How It Works</p>', unsafe_allow_html=True)
-    st.markdown('<h2 class="cf-landing-section-title">From upload to explainable diagnosis in four steps</h2>', unsafe_allow_html=True)
-
-    steps = [
-        ("📥", "Upload X-Ray", "Add a frontal chest X-ray image in PNG, JPG, or JPEG."),
-        ("🧩", "Preprocess", "The image is resized to 224×224 and normalized automatically."),
-        ("🔍", "Run CNN Prediction", "The model classifies the image as NORMAL or PNEUMONIA with a confidence score."),
-        ("🎨", "View Explanations", "GradCAM++ and Integrated Gradients maps show why the model decided what it did."),
-    ]
-    s1, s2, s3, s4 = st.columns(4)
-    for i, (col, (icon, title, desc)) in enumerate(zip([s1, s2, s3, s4], steps), start=1):
-        with col:
-            st.markdown(f"""
-                <div class="cf-step-card">
-                    <div class="cf-step-card-num">{i}</div>
-                    <div class="cf-step-card-icon">{icon}</div>
-                    <p class="cf-step-card-title">{title}</p>
-                    <p class="cf-step-card-desc">{desc}</p>
+    q_left, q_right = st.columns([3, 2])
+    with q_left:
+        st.markdown("""
+            <div class="lp-quality-card">
+                <ul style="list-style:none; padding-left: 0; margin: 0;">
+                    <li><span class="lp-check">✔</span>Every prediction is paired with GradCAM++ and Integrated Gradients maps</li>
+                    <li><span class="lp-check">✔</span>Confidence scores are shown alongside every diagnosis</li>
+                    <li><span class="lp-check">✔</span>Model trained and evaluated on chest X-ray imaging data</li>
+                    <li><span class="lp-check">✔</span>Built with TensorFlow, Keras, and Streamlit for fast iteration</li>
+                </ul>
+                <div class="lp-stat-row">
+                    <div class="lp-stat-item"><div class="lp-stat-num">224²</div><div class="lp-stat-label">Resolution</div></div>
+                    <div class="lp-stat-item"><div class="lp-stat-num">3</div><div class="lp-stat-label">XAI Methods</div></div>
+                    <div class="lp-stat-item"><div class="lp-stat-num">CNN</div><div class="lp-stat-label">Architecture</div></div>
+                    <div class="lp-stat-item"><div class="lp-stat-num">⚡</div><div class="lp-stat-label">Real-Time</div></div>
                 </div>
-            """, unsafe_allow_html=True)
+            </div>
+        """, unsafe_allow_html=True)
+    with q_right:
+        st.markdown("""
+            <div class="lp-feature-card" style="background:#0d1f13; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height: 100%;">
+                <div style="font-size:3rem; margin-bottom: 0.75rem;">🫁</div>
+                <h4 style="color:#ffffff;">See It In Action</h4>
+                <p style="color:#9db8a4; margin-bottom:1rem;">Upload a chest X-ray and watch the model explain its own reasoning in real time.</p>
+            </div>
+        """, unsafe_allow_html=True)
 
-    st.markdown('<hr class="cf-divider" />', unsafe_allow_html=True)
-
+    # Explainability toolkit pill row
+    st.markdown('<div class="lp-section-title" style="margin-top:2.5rem;">Explainability Toolkit</div>', unsafe_allow_html=True)
+    st.markdown('<div class="lp-section-sub">Notre expertise au service de votre diagnostic</div>', unsafe_allow_html=True)
     st.markdown("""
-        <div class="cf-cta-banner">
-            <h2>Ready for an instant, explainable diagnosis?</h2>
-            <p>Upload a chest X-ray and get a grounded, visual explanation of the result — no setup required.</p>
+        <div class="lp-pillrow">
+            <span class="active">✅ Confidence Score</span>
+            <span>🔥 GradCAM++</span>
+            <span>⚡ Integrated Gradients</span>
+            <span>🧠 CNN Model</span>
+            <span>📊 224×224 Input</span>
         </div>
     """, unsafe_allow_html=True)
 
     _, cta_col2, _ = st.columns([1, 1, 1])
     with cta_col2:
-        if st.button("🚀 Use Now", key="cta_bottom", use_container_width=True):
+        if st.button("🚀 Try It Now", key="cta_bottom", type="primary", use_container_width=True):
             _go_to_app()
             st.rerun()
 
+    # Closing dark section (mirrors the reference's dark team strip)
     st.markdown("""
-        <p style="text-align:center; color:#8891ab; font-size:0.8rem; margin-top:1.5rem;">
+        <div class="lp-darkfooter">
+            <h3>Powered By</h3>
+            <p>The open-source stack behind DeepX's diagnostics</p>
+            <div class="lp-tech-row">
+                <span class="lp-tech-pill">🐍 TensorFlow / Keras</span>
+                <span class="lp-tech-pill">🎈 Streamlit</span>
+                <span class="lp-tech-pill">🔥 tf-keras-vis</span>
+                <span class="lp-tech-pill">🧩 SHAP</span>
+                <span class="lp-tech-pill">🖼️ OpenCV</span>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+        <p id="footer-note" class="lp-footer-note">
             DeepX Diagnostic System | Powered by TensorFlow &amp; Streamlit<br>
             For educational and research purposes only — always consult a qualified medical professional.
         </p>
     """, unsafe_allow_html=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
 
 
 if st.session_state.view == "landing":
